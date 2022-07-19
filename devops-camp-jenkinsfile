@@ -8,7 +8,7 @@ pipeline {
             steps {
                 echo "Cloning application repository"
                 //TODO("Lab 3 - Introduction to Automated Builds"): add github url
-                sh 'git clone <YOUR GITHUB REPOSITORY URL>'
+                sh 'git clone https://github.com/zariad/devops-camp-pipeline.git'
                 //TODO("Lab 4 - Artifact Management"): add an environment variable
             }
         }
