@@ -15,7 +15,7 @@ environment {
             steps {
                 echo "Cloning application repository"
                 //TODO("Lab 3 - Introduction to Automated Builds"): add github url
-                sh 'git clone https://github.com/zariad/devops-camp-pipeline.git'
+                sh 'git clone https://github.com/zariad/afs-labs-student.git'
 dir('afs-labs-student') {
                     script {
                         env.COMMIT_HASH = sh(script: 'git rev-parse --short HEAD', returnStdout: true).trim()
