@@ -38,7 +38,7 @@ stage('DB changes: true') {
                   steps {withCredentials([usernameColonPassword(credentialsId: 'zfyffe-harbor-auth', variable: 'HARBOR-AUTH')]) {
                           script {
                               sh 'docker build -t $DB_IMAGE_NAME-$COMMIT_HASH -f ./db/Dockerfile ./afs-labs-student'
-                              docker.withRegistry('https://$HARBOR_REGISTRY', '<YOUR CREDENTIAL ID NAME>') {
+                              docker.withRegistry('https://$HARBOR_REGISTRY', 'zfyffe-harbor-auth') {
                                   sh 'docker tag $DB_IMAGE_NAME-$COMMIT_HASH $HARBOR_REGISTRY/$HARBOR_PROJECT/$DB_IMAGE_NAME:$COMMIT_HASH-$PIPELINE_HASH'
                                   sh 'docker push $HARBOR_REGISTRY/$HARBOR_PROJECT/$DB_IMAGE_NAME:$COMMIT_HASH-$PIPELINE_HASH'
                               }
