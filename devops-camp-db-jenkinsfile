@@ -47,6 +47,14 @@ stage('DB changes: true') {
                       echo "Building database image"
                       //TODO: build docker image & push to Harbor
                   }
+stage('Security scanning') {
+            steps {
+                  withCredentials([usernamePassword(credentialsId: 'zfyffe-harbor-auth', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                      echo "Scanning $DB_IMAGE_NAME image"
+                      sh 'python harbor_scanner.py -i $DB_IMAGE_NAME -r $HARBOR_REGISTRY -p $HARBOR_PROJECT -c ${USERNAME}:${PASSWORD}'
+                  }
+            }
+        }
                   post {always {
                           echo "Clean local $DB_IMAGE_NAME image"
                           script {
