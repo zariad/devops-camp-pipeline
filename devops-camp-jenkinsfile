@@ -5,6 +5,7 @@ pipeline {
 environment {
         PIPELINE_HASH = sh(script: 'git rev-parse --short HEAD', returnStdout: true).trim()
         HARBOR_REGISTRY = 'harbor.dev.afsmtddso.com'
+}
     //TODO("Lab 4 - Artifact Management"): add environment variables
     stages {
         stage('Application repository') {
@@ -19,7 +20,7 @@ dir('afs-labs-student') {
                 }
                 //TODO("Lab 4 - Artifact Management"): add an environment variable
             }
-        }
+   	}	
         stage('Application docker build') {
             steps {
 withCredentials([usernameColonPassword(credentialsId: 'zfyffe-harbor-auth', variable: 'HARBOR-AUTH')]) {
@@ -35,6 +36,7 @@ withCredentials([usernameColonPassword(credentialsId: 'zfyffe-harbor-auth', vari
                 echo "Building application image"
                 //TODO("Lab 4 - Artifact Management"): build the docker app image
             }
+	}
 post {
                 always {
                     echo "Clean local $APP_IMAGE_NAME image"
@@ -49,8 +51,6 @@ post {
                 }
             }
             //TODO("Lab 4 - Artifact Management"): clean local docker app image
-        }
-        stage
 
         stage('Deploy') {
             steps {
@@ -60,7 +60,7 @@ sh 'kubectl -n zfyffe set image deployment/app-deployment app-deployment=$HARBOR
                 //TODO("Lab 5 - Deploy to EKS"): deploy docker images
             }
         }
-    }
+ 
     post {
         cleanup {
             echo "Clean workspace"
