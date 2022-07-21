@@ -48,7 +48,7 @@ pipeline {
                 }
             }
         }
-        stage('Security scanning') {
+      /*stage('Security scanning') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'zfyffe-harbor-auth', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                     echo "Scanning $APP_IMAGE_NAME image"
@@ -56,6 +56,7 @@ pipeline {
                 }
             }
         }
+*/
         stage('Test'){
             steps {
                 echo "Testing stage"
