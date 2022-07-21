@@ -68,3 +68,4 @@ sh 'kubectl -n zfyffe set image deployment/app-deployment app-deployment=$HARBOR
         }
     }
 }
+}
