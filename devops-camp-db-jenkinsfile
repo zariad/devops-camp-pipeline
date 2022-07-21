@@ -13,7 +13,7 @@ environment {
 stage('Application repository') {
             steps {
                 echo "Cloning application repository"
-                sh 'git clone <https://github.com/zariad/afs-labs-student.git'
+                sh 'git clone https://github.com/zariad/afs-labs-student.git'
                 dir('afs-labs-student') {
                     script {
                         env.COMMIT_HASH = sh(script: 'git log --format=format:%h -1 --follow database/database.sql', returnStdout: true).trim()
